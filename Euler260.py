@@ -23,16 +23,20 @@ def fill_game_board(size):
         if shell_size % 10 == 0:
             print(shell_size)
 
-        # Iterate over 3 faces of an expanding cube, this does overlap some work at the face intersections..
-        for z in range(0, shell_size + 1):
-            if z == shell_size:
-                for y in range(0, shell_size + 1):
-                    for x in range(0, shell_size + 1):
-                        check_and_fill_cell(board, (x, y, z))
-            else:
-                for k in range(0, shell_size + 1):
-                    check_and_fill_cell(board, (shell_size, k, z))
-                    check_and_fill_cell(board, (k, shell_size, z))
+        # X axis
+        empties = np.argwhere(board[shell_size, :shell_size+1, :shell_size+1] == EMPTY)
+        for y, z in empties:
+            check_and_fill_cell(board, (shell_size, y, z))
+
+        # X axis
+        empties = np.argwhere(board[:shell_size+1, shell_size, :shell_size+1] == EMPTY)
+        for x, z in empties:
+            check_and_fill_cell(board, (x, shell_size, z))
+
+        # X axis
+        empties = np.argwhere(board[:shell_size+1, :shell_size+1, shell_size] == EMPTY)
+        for x, y in empties:
+            check_and_fill_cell(board, (x, y, shell_size))
 
     return board
 
@@ -44,7 +48,6 @@ def check_and_fill_cell(board, position):
 
 
 def fill_vectors(start, board, val):
-
     vectors = [(0, 0, 1), (0, 1, 0), (1, 0, 0),
                (0, 1, 1), (1, 1, 0), (1, 0, 1),
                (1, 1, 1)]
@@ -77,7 +80,7 @@ def fill_vector(start, board, vector, val):
 
 if __name__ == "__main__":
 
-    size = 100 + 1
+    size = 1000 + 1
 
     board = fill_game_board(size)
 
