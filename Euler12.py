@@ -29,8 +29,6 @@ def get_divisors(number: int) -> List[int]:
 
     return divisors
 
-    # return [n+1 for n in range(sqrt(number)) if number % (n+1) == 0 or number % ]
-
 
 def get_num_divisors(number: int) -> int:
     return len(get_divisors(number))
