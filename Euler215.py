@@ -1,5 +1,6 @@
 # Project Euler 215. wall stacking problem
 # Adrian Shedley 7/8/21
+
 from typing import List
 import numpy as np
 

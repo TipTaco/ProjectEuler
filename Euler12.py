@@ -1,6 +1,7 @@
 # Project Euler Question 12:
 # Number of factors in a triangular number
-from math import sqrt
+# Adrian Shedley, 22 August 2021
+
 from typing import List
 import numpy as np
 
